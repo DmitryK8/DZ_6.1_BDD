@@ -1,6 +1,5 @@
 package ru.netology.test;
 
-import com.codeborne.selenide.Configuration;
 import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,6 @@ public class MoneyTransferTest {
 
     @BeforeEach
     void setup() {
-        Configuration.holdBrowserOpen = true;
         open("http://localhost:9999");
         val loginPageV1 = new LoginPageV1();
         val authInfo = DataHelper.getAuthInfo();
@@ -60,8 +58,8 @@ public class MoneyTransferTest {
     @Test
     void shouldInvalidReplenishmentOfTheCardTwo() {
         val dashboardPage = new DashboardPage();
-        int expectedCard1Balance = 0;
-        int expectedCard2Balance = 20000;
+        int expectedCard1Balance = 1;
+        int expectedCard2Balance = 19999;
         val replenishmentPage = dashboardPage.replenishmentOfTheCard(2);
         replenishmentPage.replenishment("10000", DataHelper.сardOne().getCardNumber());
         int card1Balance = dashboardPage.getCardBalance(DataHelper.сardOne().getCardId());
