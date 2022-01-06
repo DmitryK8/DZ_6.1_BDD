@@ -33,10 +33,10 @@ public class MoneyTransferTest {
             int meanValue = (card1Balance - card2Balance) / 2;
             if (card1Balance < card2Balance) {
                 val replenishmentPage = dashboardPage.replenishmentOfTheCard(1);
-                replenishmentPage.replenishment(Integer.toString(meanValue), DataHelper.сardOne().getCardNumber());
+                replenishmentPage.replenishment(Integer.toString(meanValue), DataHelper.сardTwo().getCardNumber());
             } else {
                 val replenishmentPage = dashboardPage.replenishmentOfTheCard(2);
-                replenishmentPage.replenishment(Integer.toString(meanValue), DataHelper.сardTwo().getCardNumber());
+                replenishmentPage.replenishment(Integer.toString(meanValue), DataHelper.сardOne().getCardNumber());
             }
         }
     }
@@ -58,8 +58,8 @@ public class MoneyTransferTest {
     @Test
     void shouldInvalidReplenishmentOfTheCardTwo() {
         val dashboardPage = new DashboardPage();
-        int expectedCard1Balance = 1;
-        int expectedCard2Balance = 19999;
+        int expectedCard1Balance = 0;
+        int expectedCard2Balance = 20000;
         val replenishmentPage = dashboardPage.replenishmentOfTheCard(2);
         replenishmentPage.replenishment("10000", DataHelper.сardOne().getCardNumber());
         int card1Balance = dashboardPage.getCardBalance(DataHelper.сardOne().getCardId());
